@@ -205,7 +205,7 @@ def main_menu():
     print("╚═══════════════════════════════════════╝" + Style.RESET_ALL)
     estado_invasivo = (Fore.YELLOW + "[MOVER FOTOS Y ELIMINAR DUPLICADOS]" if INVASIVE_MODE else Fore.GREEN + "[COPIAR LAS FOTOS Y ORDENARLAS]")
     estado_renombrado = (Fore.YELLOW + "[NOMBRAR LAS FOTOS CON LA FECHA]" if RENAME_PHOTOS else Fore.GREEN + "[NO CAMBIAR EL NOMBRE]")
-    print(Fore.GREEN + " 1 " + Style.BRIGHT + "- Iniciar el proceso de organización en la carpeta actual" + Style.RESET_ALL)
+    print(Fore.GREEN + " 1 " + Style.BRIGHT + "- Iniciar el proceso de organización" + Style.RESET_ALL)
     print(Fore.GREEN + " 2 " + Style.RESET_ALL + "- Alternar modo invasivo (mover/eliminar en lugar de copiar)" + 
           Fore.WHITE + f"   Estado actual: {estado_invasivo}" + Style.RESET_ALL)
     print(Fore.GREEN + " 3 " + Style.RESET_ALL + "- Alternar renombrado de fotos (usar fecha/hora originales)" + 
