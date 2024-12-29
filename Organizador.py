@@ -45,7 +45,7 @@ def organize_photos(source_folder):
     processed_hashes = {}
 
     for root, dirs, files in os.walk(source_folder):
-        if "Ordenado" in root or os.path.basename(root).startswith('$'):
+        if "Ordenado" in root or "$RECYCLE.BIN" in root:
             continue
 
         for filename in files:
