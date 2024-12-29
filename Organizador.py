@@ -180,11 +180,17 @@ def organize_photos(source_folder):
                     shutil.copy(file_path, new_path)
                     print_message("non_photo_copied", src=file_path, dest=new_path)
 
-    for root, dirs, files in os.walk(source_folder, topdown=False):
-        for dir in dirs:
-            dir_path = os.path.join(root, dir)
-            if not os.listdir(dir_path):
-                os.rmdir(dir_path)
+    if INVASIVE_MODE:
+        for root, dirs, files in os.walk(source_folder, topdown=False):
+            for dir in dirs:
+                dir_path = os.path.join(root, dir)
+                if not os.listdir(dir_path):
+                    try:
+                        os.rmdir(dir_path)
+                    except PermissionError:
+                        print(Fore.RED + f"Permission denied: {dir_path}" + Style.RESET_ALL)
+                    except Exception as e:
+                        print(Fore.RED + f"Error removing directory {dir_path}: {e}" + Style.RESET_ALL)
 
     end_time = time.time()
     elapsed_time = end_time - start_time
