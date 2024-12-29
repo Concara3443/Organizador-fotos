@@ -65,8 +65,12 @@ def organize_photos(source_folder):
                             month = partes[1]
                             day_time = partes[2].split(' ')
                             day = day_time[0]
-                            time_part = day_time[1].replace(':', '-')
-                            formatted_date = f"{day}-{month}-{year}_{time_part}"
+                            time_part = day_time[1].split(':')
+                            hour = time_part[0]
+                            minute = time_part[1] if len(time_part) > 1 else "00"
+                            second = time_part[2] if len(time_part) > 2 else "00"
+                            formatted_date = f"{year}-{month}-{day}_{hour}-{minute}-{second}" if len(time_part) > 1 else f"{year}-{month}-{day}_{hour}-00-00"
+                            formatted_date = f"{year}-{month}-{day}" if len(time_part) == 1 else formatted_date
                             dest_folder = os.path.join(base_dest, year)
                             os.makedirs(dest_folder, exist_ok=True)
                             new_name = f"{formatted_date}.jpg" if RENAME_PHOTOS else filename
