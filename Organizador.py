@@ -45,7 +45,7 @@ def organize_photos(source_folder):
     processed_hashes = {}
 
     for root, dirs, files in os.walk(source_folder):
-        if "Ordenado" in root:
+        if "Ordenado" in root or os.path.basename(root).startswith('$'):
             continue
 
         for filename in files:
@@ -92,7 +92,7 @@ def organize_photos(source_folder):
                                 else:
                                     counter = 1
                                     while os.path.exists(new_path):
-                                        new_name = f"{formatted_date}_duplicado_{counter}.jpg" if RENAME_PHOTOS else f"{filename}_duplicado_{counter}"
+                                        new_name = f"{formatted_date}_{counter}.jpg" if RENAME_PHOTOS else f"{filename}_{counter}"
                                         new_path = os.path.join(dest_folder, new_name)
                                         counter += 1
                                     if INVASIVE_MODE:
